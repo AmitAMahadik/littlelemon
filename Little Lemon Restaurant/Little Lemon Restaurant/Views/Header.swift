@@ -18,15 +18,28 @@ struct Header: View {
                     HStack {
                         Spacer()
                         if isLoggedIn {
-                           // NavigationLink(destination: UserProfile()){
-                             Image("Profile")
-                           // }
+                            NavigationLink(destination: UserProfile()) {
+                                Image("Profile")
+                                    .resizable()
+                                    .aspectRatio( contentMode: .fit)
+                                    .frame(maxHeight: 50)
+                                    .clipShape(Circle())
+                                    .padding(.trailing)
+                            }
                         }
                     }
                 }
             }
         }
-       // Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        .frame(maxHeight: 60)
+        .padding(.bottom)
+        .onAppear() {
+            if UserDefaults.standard.bool(forKey: kIsLoggedIn) {
+                isLoggedIn = true
+            } else {
+                isLoggedIn = false
+            }
+        }
     }
 }
 
