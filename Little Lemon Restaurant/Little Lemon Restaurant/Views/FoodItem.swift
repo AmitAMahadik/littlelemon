@@ -24,11 +24,15 @@ struct FoodItem: View {
                     .foregroundColor(.primaryColor1)
                     .lineLimit(2)
                 Spacer(minLength: 5)
-                Text("$" + (dish.price ?? ""))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(.highlightText())
-                    .foregroundColor(.primaryColor1)
-                    .monospaced()
+                if #available(iOS 16.0, *) {
+                    Text("$" + (dish.price ?? ""))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .font(.highlightText())
+                        .foregroundColor(.primaryColor1)
+                        .monospaced()
+                } else {
+                    // Fallback on earlier versions
+                }
             }
             AsyncImage(url: URL(string: dish.image ?? "")) { image in
                 image

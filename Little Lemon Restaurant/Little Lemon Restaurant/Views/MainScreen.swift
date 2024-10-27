@@ -12,11 +12,15 @@ struct MainScreen: View {
     
     var body: some View {
        // Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-        NavigationStack {
-            VStack {
-                Header()
-                Menu()
+        if #available(iOS 16.0, *) {
+            NavigationStack {
+                VStack {
+                    Header()
+                    Menu()
+                }
             }
+        } else {
+            // Fallback on earlier versions
         }
     }
 }
