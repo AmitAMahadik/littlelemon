@@ -30,10 +30,14 @@ struct DetailItem: View {
             Text(dish.descriptionDish ?? "")
                 .font(.regularText())
             Spacer(minLength: 10)
-            Text("$" + (dish.price ?? ""))
-                .font(.highlightText())
-                .foregroundColor(.primaryColor1)
-                .monospaced()
+            if #available(iOS 16.0, *) {
+                Text("$" + (dish.price ?? ""))
+                    .font(.highlightText())
+                    .foregroundColor(.primaryColor1)
+                    .monospaced()
+            } else {
+                // Fallback on earlier versions
+            }
             Spacer()
         }
         .frame(maxWidth: .infinity)
